@@ -1,38 +1,207 @@
-.App {
-  text-align: center;
+main{
+  margin-top: 100px;
+}
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+  color: #002b5c;
+  font-weight: bolder;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h3 {
+  padding: 1rem 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.rating span {
+  margin: 0.1rem;
+  font-size: 15px
+}
+
+.size-button{
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  background: #f7f7f7;
+  color: #717171;
+  font-weight: bolder;
+  margin: 2px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.size-button-selected {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  background: #002b5c;
+  color: white;
+  font-weight: bolder;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.size-button:hover{
+  background: #1176bb;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.color-button {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  margin: 2px;
+  cursor: pointer;
+  user-select: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.color-button-selected {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  margin: 2px;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid #002b5c;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background-color: #1176bb;
+}
+
+.green {
+  background-color: greenyellow;
+}
+
+.white {
+  background-color: #dcdcdc;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.increase, .decrease{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  margin: 3px;
+  cursor: pointer;
+  color: #002b5c;
+  font-size: 20px;
+  border: 1px solid #002b5c;
+  user-select: none;
+}
+
+.item-number-input{
+  text-align: center;
+  width: 50px;
+  height: 40px;
+  border: 1px solid #002b5c;
+  color: #002b5c;
+  font-weight: bolder;
+  font-size: 14px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.details-section{
+  background: #f7f7f7;
+  padding: 1em 2em 2em 2em;
+  margin-top: 2em;
+}
+
+.title{
+  color: #002b5c;
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+.details{
+  color: #002b5c;
+  font-weight: bolder;
+}
+
+.stock{
+  color: green;
+  font-size: 11px;
+  font-weight: bolder;
+}
+
+.cart-drawer {
+  width: 40vw;
+  min-width: 40vw;
+}
+
+.ant-drawer-content-wrapper{
+  width: 450px !important;
+}
+
+.ant-drawer-title{
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: white !important;
+}
+
+.cart-info {
+  font-size: 12px;
+  border-right: 0.5px solid grey;
+  margin-right: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.cart-action-buttons {
+  font-size: 12px;
+  color: #1176bb;
+  border-right: 0.5px solid grey;
+  margin-right: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  cursor: pointer;
+}
+
+.old-price {
+  text-decoration: line-through;
+  text-decoration-color: red;
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: bolder;
+  color: #717171;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.red-text {
+  color: #d63855;
+  font-size: 11px;
+  font-weight: bolder;
 }

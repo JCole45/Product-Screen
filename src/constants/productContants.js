@@ -1,0 +1,5 @@
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
+export const EDIT_CART_ITEM  = 'EDIT_CART_ITEM'
+export const APPLY_COUPON_TO_CART = 'APPLY_COUPON_TO_CART'
+
