@@ -40,19 +40,19 @@ const CartScreen = () => {
 
     const handleCouponInput = (e) => {
         setErrorMessage({ error: false, message: '' })
-      
+
         let code = /^[a-z0-9]*$/i
-        if (e.target.value.match(code) ) {
+        if (e.target.value.match(code)) {
             setCoupon(e.target.value)
         }
     }
 
     const handleApplyCoupon = (coupon_number) => {
-        if(coupon_number.length == 5){
-        dispatch(applyCoupon(coupon_number))
-      }else {
-         setErrorMessage({ error: true, message: 'Coupon must contain 5 characters' })
-      }
+        if (coupon_number.length == 5) {
+            dispatch(applyCoupon(coupon_number))
+        } else {
+            setErrorMessage({ error: true, message: 'Coupon must contain 5 characters' })
+        }
 
     }
 
@@ -107,7 +107,7 @@ const CartScreen = () => {
 
     return (
         <>
-            <h1> My Bag </h1>
+            <h1 style={{ color: '#002b5c' }}> My Bag </h1>
             {cartItems && cartItems.length === 0 ?
                 <Message>Your cart is empty <Link to='/'>Go Back</Link></Message>
                 :
@@ -167,7 +167,7 @@ const CartScreen = () => {
                                                 </Form.Control>
                                             </Col>
                                             <Col md={2}>
-                                                <Radio.Group onChange={(e)=> onChange(e, item)} value={item.delivery} style={{ fontSize: '11px' }}>
+                                                <Radio.Group onChange={(e) => onChange(e, item)} value={item.delivery} style={{ fontSize: '11px' }}>
                                                     <Radio style={radioStyle} value={1}>
                                                         Ship to Me
                                                     </Radio>
@@ -223,7 +223,7 @@ const CartScreen = () => {
 
                                                     </>
                                                 }
-                                                 {available_coupon &&<Row> <span className="red-text"> Coupon applied </span></Row>}
+                                                {available_coupon && <Row> <span className="red-text"> 50% Coupon applied </span></Row>}
                                             </Col>
                                         </Row>
                                     </ListGroup.Item>
@@ -248,19 +248,32 @@ const CartScreen = () => {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                        {errorMessage.error&&
-                                        <Row>
-                                            <Message>{errorMessage.message}</Message>
-                                        </Row>}
+                                        {errorMessage.error &&
+                                            <Row>
+                                                <Message>{errorMessage.message}</Message>
+                                            </Row>}
                                     </ListGroup.Item>
 
                                     <Link to='/checkout'>
+                                        <ListGroup.Item>
+                                            <Button style={buttonStyleRed} type='button' className='btn-block' /*disabled={cartItems.lenght === 0} onClick={checkoutHandler}*/>
+                                                Checkout
+                                        </Button>
+                                        </ListGroup.Item>
+                                    </Link>
+
+                                    <Link to='/'>
                                     <ListGroup.Item>
-                                        <Button style={buttonStyleRed} type='button' className='btn-block' /*disabled={cartItems.lenght === 0} onClick={checkoutHandler}*/>
-                                            Checkout
+                                        <Button
+                                            className='btn-block'
+                                            type='button'
+                                            style={{ background: 'white', color: '#002b5c', borderRadius: '0', height: '40px', fontWeight: '900', border: '1px solid #002b5c' }}
+                                        >
+                                            CONTINUE SHOPPING
                                         </Button>
                                     </ListGroup.Item>
                                     </Link>
+
 
                                     <ListGroup.Item>
                                         <Row>

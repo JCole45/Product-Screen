@@ -149,8 +149,12 @@ const CheckoutScreen = () => {
                                 <ListGroup variant='flush'>
                                     <ListGroup.Item style={{ background: '#002b5c', color: 'white', fontWeight: '900' }}>
                                         <Col>
-                                            <Row>
+                                            <Row style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                                                 <h3 style={{ color: 'white' }}> Order Summary</h3>
+                                                <Link to='/cart' className="edit-button">
+                                                    <span><i className="fas fa-suitcase" style={{ color: '#002b5c' }}></i></span>
+                                                    <span>Edit</span>
+                                                </Link>
                                             </Row>
                                             <Row>
                                                 {cartItems && cartItems.reduce((acc, item) => acc + item.quantity, 0)} items
@@ -167,7 +171,7 @@ const CheckoutScreen = () => {
                                             <Col>
                                                 <>
                                                     <span className={"price"}>
-                                                        ${cartItems && cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+                                                        ${!available_coupon ? cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2) : cartItems.reduce((acc, item) => acc + item.quantity * item.price/2, 0).toFixed(2) }
                                                     </span>
                                                 </>
                                             </Col>
@@ -212,7 +216,7 @@ const CheckoutScreen = () => {
                                             <Col>
                                                 <>
                                                     <span className={"price"}>
-                                                        ${cartItems && cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+                                                    ${!available_coupon ? cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2) : cartItems.reduce((acc, item) => acc + item.quantity * item.price/2, 0).toFixed(2) }
                                                     </span>
                                                 </>
                                             </Col>

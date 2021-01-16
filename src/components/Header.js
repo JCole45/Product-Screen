@@ -133,7 +133,7 @@ const Header = (props) => {
                     <IconButton>
                         <SearchIcon />
                     </IconButton>
-                    <Link to='/cart'>
+                    <Link href='/cart'>
                         <IconButton>
                             <i className="fas fa-suitcase" style={{ color: '#002b5c' }}></i>
                         </IconButton>

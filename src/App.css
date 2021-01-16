@@ -248,3 +248,16 @@ h3 {
   color: #002b5c;
   text-transform: capitalize;
 }
+
+.edit-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50px;
+  height: auto;
+  background: white;
+  color: #002b5c;
+  cursor: pointer;
+  border-radius: 4px;
+}
