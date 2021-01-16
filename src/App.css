@@ -261,3 +261,18 @@ h3 {
   cursor: pointer;
   border-radius: 4px;
 }
+
+.number-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  min-height: 30px;
+  background: #002b5c;
+  color: white;
+  font-size: 17px;
+  border-radius: 50%;
+  margin-left: 5px;
+}

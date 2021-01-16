@@ -27,7 +27,7 @@ const CartScreen = () => {
 
     const handleQuantity = (quantity, item) => {
         dispatch(editProductInCart({
-            ...item, quantity: quantity
+            ...item, quantity: Number(quantity)
         }))
     }
 
@@ -107,7 +107,9 @@ const CartScreen = () => {
 
     return (
         <>
-            <h1 style={{ color: '#002b5c' }}> My Bag </h1>
+            <h1 style={{display:'flex', color: '#002b5c' }}> 
+            My Bag <span className="number-circle">{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span> 
+            </h1>
             {cartItems && cartItems.length === 0 ?
                 <Message>Your cart is empty <Link to='/'>Go Back</Link></Message>
                 :
@@ -249,7 +251,7 @@ const CartScreen = () => {
                                             </Col>
                                         </Row>
                                         {errorMessage.error &&
-                                            <Row>
+                                            <Row style={{display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px'}}>
                                                 <Message>{errorMessage.message}</Message>
                                             </Row>}
                                     </ListGroup.Item>
