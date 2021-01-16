@@ -148,7 +148,6 @@ const CartScreen = () => {
                                                 <Row style={{ marginTop: '5px' }}>
                                                     <Link to={`/edit/${item._id}`} className="cart-action-buttons"> <strong>Edit</strong></Link>
                                                     <span onClick={() => handleDelete(item._id)} className="cart-action-buttons"> <strong>Remove</strong></span>
-                                                    <span className="cart-action-buttons"> <strong>Color</strong></span>
                                                 </Row>
                                             </Col>
                                             <Col md={1}>
