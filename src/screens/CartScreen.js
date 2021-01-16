@@ -139,7 +139,7 @@ const CartScreen = () => {
                                                 <Image src={item.images[0]} alt={''} fluid rounded />
                                             </Col>
                                             <Col md={4}>
-                                                <Row ><Link style={{ color: '#002b5c', fontWeight: 'bolder' }} to={`product`}>Harbor Fleece Shep Shirt</Link></Row>
+                                                <Row ><Link style={{ color: '#002b5c', fontWeight: 'bolder' }} to={`/edit/${item._id}`}>Harbor Fleece Shep Shirt</Link></Row>
                                                 <Row>
                                                     <span className="cart-info"> <strong>Style</strong>: L9031</span>
                                                     <span className="cart-info"> <strong>Size</strong>: {item.size}</span>
