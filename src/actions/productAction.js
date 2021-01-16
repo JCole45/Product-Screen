@@ -25,7 +25,6 @@ export const deleteCartItem = (id) => (dispatch, getState) => {
     })
 
     localStorage.setItem('storeCartItems', JSON.stringify(getState().addToCart.cartItems))
-
 }
 
 export const applyCoupon = (coupon) => (dispatch) => {
