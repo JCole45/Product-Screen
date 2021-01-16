@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Rating from '../components/Rating'
+import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Carousel } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductToCart, editProductInCart } from '../actions/productAction'
@@ -8,7 +9,7 @@ import { Drawer } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import item_images from '../images'
 
-const ProductDetails = ({ history, location, match }) => {
+const EditScreen = ({ history, location, match }) => {
     const dispatch = useDispatch()
     const [name, setName] = useState('Harbor Fleece Shep Shirt')
     const [price, setPrice] = useState(138)
@@ -19,18 +20,29 @@ const ProductDetails = ({ history, location, match }) => {
     const [errorMessage, setErrorMessage] = useState({ error: false, message: '' })
     const [successMessage, setSuccessMessage] = useState({ success: false, message: '' })
     const [showCartItems, setShowCartItems] = useState(false)
-    
+    const [status, setStatus] = useState(false)
+    const [delivery, setDelivery] = useState()
 
     const cart = useSelector(state => state.addToCart)
     const { cartItems } = cart
 
     const setEditInfo = (item) => {
+        setStatus(true)
         setName(item.name)
         setPrice(item.price)
         setQty(item.quantity)
         setColor(item.color)
         setSize(item.size)
+        setDelivery(item.delivery)
     }
+    useEffect(() => {
+        if (location.pathname = '/edit') {
+            let id = match.params.id
+            cartItems.map(item => item._id === id ?
+                setEditInfo(item) : item
+            )
+        }
+    }, [location])
 
     const colors = ['red', 'yellow', 'green', 'blue', 'white']
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
@@ -107,11 +119,28 @@ const ProductDetails = ({ history, location, match }) => {
                 size: size,
                 price: price,
                 color: color,
-                images: item_images[color],
-                delivery: 1
+                images: item_images[color]
             }))
             history.push('/cart')
         }
+    }
+
+    const handleEditItem = () => {
+        dispatch(editProductInCart({
+            _id: match.params.id,
+            name: name,
+            quantity: qty,
+            size: size,
+            price: price,
+            color: color,
+            images: item_images[color],
+            delivery: delivery
+        }))
+        setSuccessMessage({ success: true, message: 'Item edited successfully' })
+
+        setTimeout(()=> {
+            history.push('/cart')
+        }, 3000)
     }
 
     const handleShowCartItems = () => {
@@ -193,6 +222,7 @@ const ProductDetails = ({ history, location, match }) => {
                         <Row>
                             <span className="draw-quantity">Qty:{qty}</span>
                         </Row>
+
                     </Col>
                 </Row>
 
@@ -266,6 +296,8 @@ const ProductDetails = ({ history, location, match }) => {
                 </Row>
             </Drawer>
 
+            <Message>Back to <Link to='/cart'>Cart</Link></Message>
+            {status ? 
             <Row>
                 <Col md={6}>
                     <Carousel touch={true}>
@@ -345,14 +377,14 @@ const ProductDetails = ({ history, location, match }) => {
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                <Button
-                                className='btn-block'
-                                type='button'
-                                onClick={showDrawer}
-                                style={buttonStyle}
-                            >
-                                Add to Bag
-                            </Button>
+                                    <Button
+                                        className='btn-block'
+                                        type='button'
+                                        onClick={handleEditItem}
+                                        style={buttonStyle}
+                                    >
+                                        Update
+                                </Button>
                             </ListGroup.Item>
 
                         </ListGroup>
@@ -364,37 +396,12 @@ const ProductDetails = ({ history, location, match }) => {
                 </Col>
 
             </Row>
-
-            <Row className="details-section">
-                <Col md={6}>
-                    <Row className="title">The Details</Row>
-                    <Row className="details">
-                        Our original fleece in our signature Shep Shirt style. Made from soft, recycled fabric this fleece will be your new go-to layer for the fall, winter and spring. (So, you might want to get a few.)
-                        Our original fleece in our signature Shep Shirt style. Made from soft, recycled fabric this fleece will be your new go-to layer for the fall, winter and spring. (So, you might want to get a few.)
-                    </Row>
-                </Col>
-
-                <Col md={4}>
-                </Col>
-            </Row>
-
-                    <Row>
-                        <Col md={6}>
-                            <h3>Reviews</h3>
-                            <ListGroup variant='flush'>
-                                {cartItems.map((review, i) => (
-                                    <ListGroup.Item key={i}>
-                                        <Rating value={4} color="#1176bb" />
-                                        <p>I wasnt sure if this would be liked due to the material however it was immediately put on and loved!</p>
-                                    </ListGroup.Item>
-                                ))}
-
-                            </ListGroup>
-                        </Col>
-                    </Row>
+            : 
+            <Message>Item not found</Message>
+            }
 
         </>
     )
 }
 
-export default ProductDetails
+export default EditScreen
