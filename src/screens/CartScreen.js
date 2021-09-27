@@ -13,17 +13,9 @@ const CartScreen = () => {
     const { cartItems, coupon: available_coupon } = cart
 
     const [coupon, setCoupon] = useState('')
-    const [value, setValue] = useState(1);
     const [errorMessage, setErrorMessage] = useState({ error: false, message: '' })
 
     const count = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    const onChange = (e, item) => {
-        setValue(e.target.value)
-        dispatch(editProductInCart({
-            ...item, delivery: e.target.value
-        }))
-    };
 
     const handleQuantity = (quantity, item) => {
         dispatch(editProductInCart({
@@ -31,8 +23,11 @@ const CartScreen = () => {
         }))
     }
 
-    const handleDelivery = (delivery, item) => {
-    }
+    const handleDelivery = (e, item) => {
+        dispatch(editProductInCart({
+            ...item, delivery: e.target.value
+        }))
+    };
 
     const handleDelete = (id) => {
         dispatch(deleteCartItem({ id }))
@@ -48,7 +43,7 @@ const CartScreen = () => {
     }
 
     const handleApplyCoupon = (coupon_number) => {
-        if (coupon_number.length == 5) {
+        if (coupon_number.length === 5) {
             dispatch(applyCoupon(coupon_number))
         } else {
             setErrorMessage({ error: true, message: 'Coupon must contain 5 characters' })
@@ -168,7 +163,7 @@ const CartScreen = () => {
                                                 </Form.Control>
                                             </Col>
                                             <Col md={2}>
-                                                <Radio.Group onChange={(e) => onChange(e, item)} value={item.delivery} style={{ fontSize: '11px' }}>
+                                                <Radio.Group onChange={(e) => handleDelivery(e, item)} value={item.delivery} style={{ fontSize: '11px' }}>
                                                     <Radio style={radioStyle} value={1}>
                                                         Ship to Me
                                                     </Radio>

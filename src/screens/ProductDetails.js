@@ -8,8 +8,12 @@ import { Drawer } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import item_images from '../images'
 
+
+
+
 const ProductDetails = ({ history, location, match }) => {
     const dispatch = useDispatch()
+    
     const [name, setName] = useState('Harbor Fleece Shep Shirt')
     const [price, setPrice] = useState(138)
     const [qty, setQty] = useState(1)
@@ -20,10 +24,10 @@ const ProductDetails = ({ history, location, match }) => {
     const [successMessage, setSuccessMessage] = useState({ success: false, message: '' })
     const [showCartItems, setShowCartItems] = useState(false)
     
-
+    
     const cart = useSelector(state => state.addToCart)
     const { cartItems } = cart
-
+    
     const setEditInfo = (item) => {
         setName(item.name)
         setPrice(item.price)
@@ -31,14 +35,14 @@ const ProductDetails = ({ history, location, match }) => {
         setColor(item.color)
         setSize(item.size)
     }
-
+    
     const colors = ['red', 'yellow', 'green', 'blue', 'white']
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
-
+    
     const onClose = () => {
         setVisible(false);
     };
-
+    
     const showDrawer = () => {
         if (!color) {
             setErrorMessage({ error: true, message: 'Select color of item' })
@@ -60,35 +64,35 @@ const ProductDetails = ({ history, location, match }) => {
     const hideDrawer = () => {
         setVisible(false)
     }
-
+    
     const handleInputField = (e) => {
         let code = /^[0-9]*$/i
         if (e.target.value.match(code)) {
             setQty(Number(e.target.value))
         }
-
+    
     }
-
+    
     const handleIncrease = (e) => {
         setQty(qty + 1)
     }
-
+    
     const handleDecrease = (e) => {
         if (qty > 1) {
             setQty(qty - 1)
         }
     }
-
+    
     const handleColor = (selected_color) => {
         setColor(selected_color)
         setErrorMessage({ error: false, message: '' })
     }
-
+    
     const handleItemSize = (item_size) => {
         setSize(item_size)
         setErrorMessage({ error: false, message: '' })
     }
-
+    
     const handleAddToCart = () => {
         if (!color) {
             setErrorMessage({ error: true, message: 'Select color of item' })
@@ -113,11 +117,11 @@ const ProductDetails = ({ history, location, match }) => {
             history.push('/cart')
         }
     }
-
+    
     const handleShowCartItems = () => {
         setShowCartItems(!showCartItems)
     }
-
+    
     const headerStyle = {
         background: '#002b5c',
         display: 'flex',
@@ -126,11 +130,11 @@ const ProductDetails = ({ history, location, match }) => {
         color: 'white !important',
         fontWeight: 'bolder'
     }
-
+    
     const bodyStyle = {
         padding: '15px'
     }
-
+    
     const drawRowStyle = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -142,7 +146,7 @@ const ProductDetails = ({ history, location, match }) => {
         cursor: 'pointer',
         marginTop: '10px'
     }
-
+    
     const drawColStyle = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -153,7 +157,7 @@ const ProductDetails = ({ history, location, match }) => {
         borderBottom: '1px solid #dcdcdc',
         textTransform: 'uppercase'
     }
-
+    
     const buttonStyle = {
         background: '#002b5c',
         borderRadius: '0',
@@ -162,7 +166,7 @@ const ProductDetails = ({ history, location, match }) => {
         border: '1px solid #002b5c',
         textTransform: 'uppercase',
     }
-
+    
     return (
         <>
             <Drawer
